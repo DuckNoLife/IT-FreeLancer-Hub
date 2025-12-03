@@ -10,11 +10,12 @@ const app = express();
 connectDB();
 
 // Global Middleware
-// CORS Configuration: Allow all origins to prevent blockage between Frontend and Backend
+// CORS Configuration: Restrict access to the specific Client URL defined in the environment variables.
 app.use(cors({
-    origin: '*', 
+    origin: process.env.CLIENT_URL, // e.g., 'https://elite-freelance-hub.onrender.com'
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Allow cookies/headers to be sent
 }));
 
 // Webhook handling: Must be placed before express.json() 
