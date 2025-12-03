@@ -10,19 +10,18 @@ const app = express();
 connectDB();
 
 // Global Middleware
-// CORS Configuration: Restrict access to the specific Client URL defined in the environment variables.
+// CORS Configuration: Allows both Production (CLIENT_URL) and Localhost
 app.use(cors({
-    origin: process.env.CLIENT_URL, // e.g., 'https://elite-freelance-hub.onrender.com'
+    origin: [process.env.CLIENT_URL, "http://localhost:5173"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true // Allow cookies/headers to be sent
+    credentials: true
 }));
 
-// Webhook handling: Must be placed before express.json() 
-// Stripe requires the raw body for signature verification.
+// Webhook handling: Must be placed before express.json()
 app.use('/webhook', express.raw({ type: 'application/json' }), require('./routes/webhook')); 
 
-// Body parser middleware (applies to normal API routes)
+// Body parser middleware
 app.use(express.json());
 
 // API Routes
