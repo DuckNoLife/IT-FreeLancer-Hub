@@ -10,7 +10,12 @@ const app = express();
 connectDB();
 
 // Global Middleware
-app.use(cors());
+// CORS Configuration: Allow all origins to prevent blockage between Frontend and Backend
+app.use(cors({
+    origin: '*', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Webhook handling: Must be placed before express.json() 
 // Stripe requires the raw body for signature verification.
