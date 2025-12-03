@@ -2,7 +2,11 @@ import axios from 'axios';
 
 // Instantiate Axios Client
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', 
+    // AUTOMATIC URL DETECTION:
+    // If VITE_API_URL is set (on Render), use it.
+    // Otherwise, fallback to localhost (for local development).
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api', 
+    
     // Default headers
     headers: {
         'Content-Type': 'application/json'
