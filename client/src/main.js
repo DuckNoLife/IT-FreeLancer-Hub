@@ -16,7 +16,8 @@ app.use(router)
 
 // Google Login configuration
 app.use(vue3GoogleLogin, {
-    clientId: '135554645708-7vkbacotvftaafe7pr3ocuk7t4f0u20j.apps.googleusercontent.com' 
+  // clientId: '135554645708-7vkbacotvftaafe7pr3ocuk7t4f0u20j.apps.googleusercontent.com'
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID
 })
 
 app.mount('#app')
