@@ -26,4 +26,3 @@ router.put('/close/:jobId/:freelancerId', auth, jobController.closeJob);
 
 // Module export
 module.exports = router;
-
