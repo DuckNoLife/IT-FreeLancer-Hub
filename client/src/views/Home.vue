@@ -115,7 +115,7 @@ export default {
                 if (this.keyword) params.keyword = this.keyword;
                 if (this.skill) params.skill = this.skill;
 
-                const res = await jobService.getCostJobs(params);
+                const res = await jobService.getAllJobs(params);
                 this.jobs = res.data;
             } catch (error) {
                 console.error('API Error: Failed to fetch job listings.', error);

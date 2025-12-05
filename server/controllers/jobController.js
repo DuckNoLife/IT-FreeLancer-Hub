@@ -223,37 +223,3 @@ exports.closeJob = async (req, res) => {
     }
 };
 
-
-// Route definition: GET api/jobs
-exports.getCostJobs = async (req, res) => {
-    try {
-        // Query parameters
-        const { keyword, skill } = req.query;
-
-        // Base query: Only open jobs
-        let query = { status: 'open' };
-
-        // Keyword search (Title OR Description)
-        if (keyword) {
-            query.$or = [
-                { title: { $regex: keyword, $options: 'i' } },
-                { description: { $regex: keyword, $options: 'i' } }
-            ];
-        }
-
-        // Skill filtering (requiredSkills array)
-        if (skill) {
-            query.requiredSkills = { $regex: skill, $options: 'i' };
-        }
-
-        // Database query and sorting 
-        const jobs = await Job.find(query)
-            .sort({ isPremium: -1, budget: -1, createdAt: -1 })  
-            .populate('ownerId', 'username email'); 
-
-        res.json(jobs);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-};
