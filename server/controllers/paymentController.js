@@ -39,7 +39,7 @@ exports.upgradeToPro = async (req, res) => {
             price_data: {
                 currency: 'usd',
                 product_data: {
-                    name: 'IT Freelancer PRO Membership',
+                    name: 'Elite Freelancer PRO Membership',
                     description: 'Lifetime access to PRO features (3 open jobs, promote premium).',
                 },
                 unit_amount: priceInCents,

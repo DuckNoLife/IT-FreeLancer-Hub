@@ -85,7 +85,7 @@
 
 <script>
 import jobService from '@/services/jobService'; 
-import api from '@/services/api'; // Import trực tiếp api để gọi endpoint thanh toán
+import api from '@/services/api'; 
 import Swal from 'sweetalert2';
 
 export default {
@@ -108,7 +108,7 @@ export default {
     computed: {
         submitButtonText() {
             if (this.isLoading) return 'Processing...';
-            // Logic: Nếu chọn Premium VÀ không phải PRO -> Nút hiện "Post & Pay $5"
+            // Logic: If not Pro + 5$"
             if (this.form.isPremium && !this.userIsPro) return 'Post Job & Pay $5';
             return 'Post Job Now';
         }
