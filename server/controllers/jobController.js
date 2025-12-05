@@ -81,7 +81,7 @@ exports.getAllJobs = async (req, res) => {
 
         // Database query and sorting (Premium first, then newest)
         const jobs = await Job.find(query)
-            .sort({ isPremium: -1, createdAt: -1 }) 
+            .sort({ budget: -1,isPremium: -1, createdAt: -1 }) 
             .populate('ownerId', 'username email'); 
 
         res.json(jobs);
